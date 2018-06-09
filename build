@@ -28,7 +28,7 @@ COMMIT_DATE=$(git show -s --format=%ad --date=short HEAD)
 ##############################
 
 # Check to see if we have a new commit
-if [ -e "$FORCE_BUILD" -o "$OLD_SHA" != "$NEW_SHA" ]
+if [ -n "$FORCE_BUILD" -o "$OLD_SHA" != "$NEW_SHA" ]
 then
   echo "Rebuilding JARs"
 

@@ -1,0 +1,9 @@
+# Build Related files
+/CCEmuX
+/template/data.json
+
+# Node
+/node_modules
+
+# Output
+/dist

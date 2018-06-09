@@ -1,0 +1,15 @@
+{
+  "name": "ccemux-web",
+  "version": "1.0.0",
+  "description": "The website for CCEmuX",
+  "main": "index.js",
+  "author": "SquidDev",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^0.11.1",
+    "node-sass": "^4.9.0"
+  },
+  "dependencies": {
+    "mustache": "^2.3.0"
+  }
+}

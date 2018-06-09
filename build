@@ -1,0 +1,70 @@
+#! /usr/bin/env sh
+
+set -e
+# set -x
+
+OUT_DIR="${OUT_DIR:-$(pwd)/dist}"
+SRC_DIR="${SRC_DIR:-$(pwd)}"
+
+if [ ! -d "$SRC_DIR/CCEmuX" ]; then
+  git clone https://github.com/CCEmuX/CCEmuX.git "$SRC_DIR/CCEmuX"
+  FORCE_BUILD=1
+fi
+
+cd "$SRC_DIR/CCEmuX"
+
+OLD_SHA=$(git rev-parse --verify HEAD)
+
+git remote update --prune
+git reset -q --hard origin/revival
+
+NEW_SHA=$(git rev-parse --verify HEAD)
+
+# Extract some useful information about the latest commit
+NEW_SHA_SHORT=$(git rev-parse --verify --short=8 HEAD)
+COMMIT_DATE=$(git show -s --format=%ad --date=short HEAD)
+
+# Building the JAR
+##############################
+
+# Check to see if we have a new commit
+if [ -e "$FORCE_BUILD" -o "$OLD_SHA" != "$NEW_SHA" ]
+then
+  echo "Rebuilding JARs"
+
+  JAR_DIR="$SRC_DIR/CCEmuX/build/libs"
+
+  # Clean the build directory and recompile
+  rm -rf "$JAR_DIR"
+  ./gradlew -q clean build
+
+  CC_JAR="$(find "$JAR_DIR" -type f -name '*-cc.jar')"
+  CCT_JAR="$(find "$JAR_DIR" -type f -name '*-cct.jar')"
+
+  # Deploy our new files
+  SUB_DIR="$OUT_DIR/versions/$NEW_SHA_SHORT"
+  mkdir -p "$SUB_DIR"
+  cp "$CC_JAR" "$SUB_DIR/CCEmuX-cc.jar"
+  cp "$CCT_JAR" "$SUB_DIR/CCEmuX-cct.jar"
+fi
+
+# Website regeneration
+##############################
+echo "Rebuilding website"
+
+# Now prepare to regenerate the site
+cd $SRC_DIR
+
+# First regenerate our CSS to ensure the checksum is correct
+make "OUT=$OUT_DIR" "$OUT_DIR/main.css"
+
+# Rebuild our JSON data
+echo "{\
+  \"css_version\":\"$(sha1sum "$OUT_DIR/main.css" | cut -c-10)\",\
+  \"sha_short\":\"$NEW_SHA_SHORT\",\
+  \"sha_long\":\"$NEW_SHA\",\
+  \"date\":\"$COMMIT_DATE\"
+}" > "$SRC_DIR/template/data.json"
+
+# And regenerate everything else
+make "OUT=$OUT_DIR" "$OUT_DIR"

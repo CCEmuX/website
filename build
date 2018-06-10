@@ -48,6 +48,8 @@ then
   cp "$CCT_JAR" "$SUB_DIR/CCEmuX-cct.jar"
 fi
 
+echo "$NEW_SHA_SHORT" > "$OUT_DIR/versions/latest"
+
 # Website regeneration
 ##############################
 echo "Rebuilding website"

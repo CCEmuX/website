@@ -1,5 +1,6 @@
 # Build Related files
 /CCEmuX
+/launcher
 /template/data.json
 
 # Node

@@ -12,9 +12,8 @@ all: $(OUT)
 clean:
 	rm -rf $(OUT)
 
-$(OUT): $(OUT)/main.css $(OUT)/index.html $(OUT)/img
+$(OUT): $(OUT)/main.css $(OUT)/index.html $(OUT)/img $(OUT)/favicon.ico $(OUT)/ccemux-launcher.jar
 	touch $(OUT)
-	cp img/icon/favicon.ico $(OUT)/favicon.ico
 
 $(OUT)/main.css: $(STYLES)
 	mkdir -p $(OUT)
@@ -23,6 +22,16 @@ $(OUT)/main.css: $(STYLES)
 $(OUT)/index.html: template/data.json template/index.mustache
 	mkdir -p $(OUT)
 	mustache template/data.json template/index.mustache > $(OUT)/index.html
+
+$(OUT)/favicon.ico: img/icon/favicon.ico
+	cp $< $@
+
+$(OUT)/ccemux-launcher.jar: launcher/build/libs/launcher-1.0-all.jar
+	cp $< $@
+
+launcher/build/libs/launcher-1.0-all.jar:
+	if [ ! -d "launcher" ]; then git clone https://github.com/CCEmuX/launcher.git launcher; fi
+	cd launcher && ./gradlew build
 
 $(OUT)/img: $(IMG)
 	rm -rf $(OUT)/img

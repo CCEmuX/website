@@ -155,8 +155,7 @@ header {
 
     img {
       max-height: 8em;
-      flex-grow: 0;
-      flex-shrink: 1;
+      flex-shrink: 0;
     }
 }
 
@@ -177,7 +176,6 @@ header {
 
     img {
       max-height: 200px;
-      max-width: 100%;
       order: 2;
       align-self: center;
     }

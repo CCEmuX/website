@@ -1,0 +1,94 @@
+{{#> layout
+    title="CCEmuX | A modular ComputerCraft emulator"
+    description="CCEmuX is an emulator for the popular Minecraft mod ComputerCraft."
+    url="/"}}
+  <header>
+    <div class="header-image"></div>
+
+    <div class="header-info">
+      <div class="header-tagline">
+        <h1>CCEmu<img src="/img/x.png" alt="X" /></h1>
+        <p>A modular ComputerCraft emulator</p>
+      </div>
+
+      <div class="download-buttons" >
+        <a href="/ccemux-launcher.jar" title="Download CCEmuX">
+          <span class="fa fa-download" aria-hidden="true"></span>
+          <span class="aria-hint">Download</span>
+          CCEmuX launcher
+        </a>
+      </div>
+
+      <div class="download-help">
+        Confused? Read our <a href="/getting-started.html" title="Find out how to download and use CCEmuX">getting started guide</a>.
+      </div>
+
+      <div class="download-status">
+        Last updated on {{ date }} using <a href="https://github.com/CCEmuX/CCEmuX/commit/{{ sha_long }}" title="View this commit on GitHub"><code>{{ sha_short }}</code></a>.
+      </div>
+    </div>
+  </header>
+
+  <div class="content">
+    <div class="features">
+      <div class="feature">
+        <h3>Near-perfect emulation</h3>
+        <div class="feature-content">
+          <img src="/img/features/emulation.png" alt="A LuaJ error inside the emulator" />
+          <div>
+            <p>
+              Built upon ComputerCraft's core, CCEmuX guarantees as accurate an experience as possible.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature">
+        <h3>Highly configurable</h3>
+        <div class="feature-content">
+          <img src="/img/features/config.png" alt="The ccemux.json config file" />
+          <div>
+            <p>
+              Using the built-in GUI or the CCEmuX config file, you can tweak all aspects of the emulator.
+            </p>
+            <p>
+              We expose all of ComputerCraft's own settings, as well as options for terminal sizes, alternative
+              renderers, and various plugin-specific options.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature">
+        <h3>CC: Tweaked compatibility</h3>
+        <div class="feature-content">
+          <img src="/img/features/cctweaked.png" alt="Using CC: Tweaked's websockets" />
+          <div>
+            <p>
+              With support for both CC and CC: Tweaked, you can write code for the widest audience, while still having
+              the power to try out new features.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature">
+        <h3>Programmable</h3>
+        <div class="feature-content">
+          <img src="/img/features/api.png" alt="Using the ccemux API to attach peripherals" />
+          <div>
+            <p>
+              Attach peripherals, start other computers and open configs, all within CraftOS.
+            </p>
+            <p>
+              The <code>emu</code> command and <code>ccemux</code> library expose all sorts of nifty functionality,
+              which make the emulator that wee bit more useful.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="bottom">{{> nav }}</nav>
+{{/layout}}

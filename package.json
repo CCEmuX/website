@@ -6,10 +6,8 @@
   "author": "SquidDev",
   "license": "MIT",
   "devDependencies": {
+    "hbs-cli": "^1.1.1",
     "http-server": "^0.11.1",
-    "node-sass": "^4.9.0"
-  },
-  "dependencies": {
-    "mustache": "^2.3.0"
+    "node-sass": "^4.9.1"
   }
 }

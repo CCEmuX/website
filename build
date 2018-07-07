@@ -66,7 +66,7 @@ echo "{\
   \"sha_short\":\"$NEW_SHA_SHORT\",\
   \"sha_long\":\"$NEW_SHA\",\
   \"date\":\"$COMMIT_DATE\"
-}" > "$SRC_DIR/template/data.json"
+}" > "$SRC_DIR/pages/data.json"
 
 # And regenerate everything else
 make "OUT=$OUT_DIR" "$OUT_DIR"

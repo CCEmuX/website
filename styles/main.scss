@@ -30,10 +30,6 @@ body {
                "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
-h2 { font-size: 1.6em; margin: 15px 0px;}
-h3 { font-size: 1.4em; margin-bottom: 5px;}
-h1, h2, h3, p { line-height: 1.4em; }
-
 a { text-decoration: none; }
 a:hover, a:focus { text-decoration: underline; }
 @include link($red, darken($red, 20%));
@@ -43,9 +39,11 @@ code {
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
 }
 
+.fa { margin: 0px 0.3em; }
+
 .aria-hint { display: none; }
 
-// Header
+// Jumbotron header
 header {
   width: 100%;
   height: 70vh;
@@ -85,7 +83,6 @@ header {
     img { height: 1em; }
   }
 
-
   .download-buttons {
     display: flex;
     width: 100%;
@@ -111,27 +108,89 @@ header {
       background-color: darken($red, 2%);
       text-decoration: none;
     }
+  }
 
-    .fa { margin: 0px 5px; }
+  .download-help, .download-status {
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
   }
 
   .download-status {
-    padding: 20px;
-    box-sizing: border-box;
     color: $lightgrey;
-    text-align: center;
+    font-size: 0.7em;
+  }
+}
+
+nav {
+  @mixin navbar($fore, $back) {
+    background: $back;
+    color: $fore;
+
+    @include link($fore, darken($fore, 20%));
+    a:hover, a:focus { background: darken($back, 10%); }
+    a.active { background: darken($back, 15%); }
+  }
+
+  width: 100%;
+  height: 50px;
+  font-size: 1.1em;
+
+  @include navbar($white, lighten($black, 15%));
+
+  // Reset some link styles
+  a:hover, a:focus { text-decoration: none; }
+
+  // Make images same height as text
+  img { height: 1em; vertical-align: bottom; }
+
+  ul, li, a { height: 100%; }
+  ul { display: inline-block; }
+  li, a { display: block; }
+  li { float: left; }
+
+  .link-left { float: left; }
+  .link-right { float: right; }
+
+  a {
+    padding: 0px 15px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+  }
+
+  &.bottom {
+    border-top: 2px solid $black;
+    @include navbar($black, $white);
   }
 }
 
 /* General */
-.content {
+.content, .narrow-content {
   width: 100%;
+  max-width: 1200px;
   box-sizing: border-box;
   padding: 15px;
-  max-width: 1200px;
   margin: 0px auto;
+
+  &.narrow-content { max-width: 800px; }
+
+  h1 { font-size: 1.8em; margin: 15px 0px; }
+  h2 { font-size: 1.6em; margin: 15px 0px; }
+  h3 { font-size: 1.4em; margin: 5px 0px;}
+  h1, h2, h3, p, li, blockquote { line-height: 1.4em; }
+
+  ul { margin-left: 1.5em; }
+  li { list-style-type: disc; margin: 0.4em 0; }
+
+  blockquote {
+    padding: 15px;
+    background: $white;
+    border-left: solid 5px $lightgrey;
+  }
 }
 
+p, ul, blockquote { .content & + & { margin-top: 10px; } }
 
 .features {
     display: flex;
@@ -158,7 +217,6 @@ header {
       flex-shrink: 0;
     }
 }
-
 
 @media(max-width: 800px) {
   .features {

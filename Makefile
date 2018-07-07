@@ -3,6 +3,7 @@ export PATH := $(shell npm bin):$(PATH)
 OUT := dist
 
 STYLES := $(shell find styles -type f -name '*.scss')
+PARTIALS := $(shell find template -type f)
 IMG := $(shell find img -type f)
 
 .PHONEY: all
@@ -12,16 +13,16 @@ all: $(OUT)
 clean:
 	rm -rf $(OUT)
 
-$(OUT): $(OUT)/main.css $(OUT)/index.html $(OUT)/img $(OUT)/favicon.ico $(OUT)/ccemux-launcher.jar
+$(OUT): $(OUT)/main.css $(OUT)/index.html $(OUT)/getting-started.html $(OUT)/img $(OUT)/favicon.ico $(OUT)/ccemux-launcher.jar
 	touch $(OUT)
 
 $(OUT)/main.css: $(STYLES)
 	mkdir -p $(OUT)
 	node-sass --output-style compressed styles/main.scss > $(OUT)/main.css
 
-$(OUT)/index.html: template/data.json template/index.mustache
+$(OUT)/%.html: pages/%.handlebars pages/data.json $(PARTIALS)
 	mkdir -p $(OUT)
-	mustache template/data.json template/index.mustache > $(OUT)/index.html
+	hbs --stdout --data pages/data.json --helper './template/helpers' --partial 'template/*.handlebars' $< > $@
 
 $(OUT)/favicon.ico: img/icon/favicon.ico
 	cp $< $@
@@ -43,6 +44,6 @@ serve: $(OUT)
 	http-server $(OUT) -c-1 & \
 	while true; do \
 		$(MAKE) -s dist; \
-		inotifywait -q -e close_write -r template styles img; \
+		inotifywait -q -e close_write -r template pages styles img; \
 	done; \
 	wait

@@ -4,76 +4,92 @@
     url="/getting-started.html" }}
   <nav>{{> nav }}</nav>
 
-  <div class="content narrow-content">
-    <h1>Getting started</h1>
-    <p>
-      While CCEmuX tries to be as approachable and intuitive as possible, there are times where things aren't as clear
-      as they should be. This guide tries to walk you through setting up CCEmuX, as well as some useful things you can
-      try.
-    </p>
+  <div class="container navigable">
+    <div class="content">
+      <h1>Getting started</h1>
+      <p>
+        While CCEmuX tries to be as approachable and intuitive as possible, there are times where things aren't as clear
+        as they should be. This guide tries to walk you through setting up CCEmuX, as well as some useful things you can
+        try.
+      </p>
 
-    <h2>Downloading CCEmuX</h2>
-    <p>
-      Running CCEmuX couldn't be easier! Simply <a href="/ccemux-launcher.jar" title="The CCEmuX launcher">grab the
-      launcher</a> and run it. On your first time running, we'll prompt you whether you want to use normal ComputerCraft
-      or <a href="https://minecraft.curseforge.com/projects/cc-tweaked" title="The CC: Tweaked CurseForge page">CC:
-      Tweaked</a>.
-    </p>
+      <h2>{{#header "downloading" .}}Downloading CCEmuX{{/header}}</h2>
+      <p>
+        Running CCEmuX couldn't be easier! Simply <a href="/ccemux-launcher.jar" title="The CCEmuX launcher">grab the
+        launcher</a> and run it. On your first time running, we'll prompt you whether you want to use normal ComputerCraft
+        or <a href="https://minecraft.curseforge.com/projects/cc-tweaked" title="The CC: Tweaked CurseForge page">CC:
+        Tweaked</a>.
+      </p>
 
-    <p>
-      The launcher will automatically download the latest version whenever the emulator is updated. You should get a
-      notification when this occurs: the next time you run the emulator you'll be up-to-date again!
-    </p>
+      <p>
+        The launcher will automatically download the latest version whenever the emulator is updated. You should get a
+        notification when this occurs: the next time you run the emulator you'll be up-to-date again!
+      </p>
 
-    <p>
-      When you start CCEmuX, a single computer will be opened by default. From here you can do anything you might do
-      within the game - edit files, paint a picture, play worm. This is fantastic, and often enough, but CCEmuX can do
-      an awful lot more:
-    </p>
+      <p>
+        When you start CCEmuX, a single computer will be opened by default. From here you can do anything you might do
+        within the game - edit files, paint a picture, play worm. This is fantastic, and often enough, but CCEmuX can do
+        an awful lot more:
+      </p>
 
-    <h2>The <code>emu</code> command</h2>
-    <p>
-      CCEmuX offers the ability to control the emulator by the <code>ccemux</code> API and <code>emu</code>
-      command. We'll focus on the second of those, as it's a little more user friendly.
-    </p>
+      <h2>{{#header "emu-cmd" .}}The <code>emu</code> command{{/header}}</h2>
+      <p>
+        CCEmuX offers the ability to control the emulator by the <code>ccemux</code> API and <code>emu</code>
+        command. We'll focus on the second of those, as it's a little more user friendly.
+      </p>
 
-    <blockquote>
-      Don't feel like you have to remember any of this! The emulator is documented in game, so you can always
-      run <code>help emu</code> if you get stuck.
-    </blockquote>
+      <p>
+        <img src="img/help/emu-cmd.png" alt="Using the `emu` command" title="Using the `emu` command" class="article-img" />
+      </p>
 
-    <h3>Opening more computers</h3>
-    <p>
-      Sometimes you may want more than one computer. Maybe you need to test a chat program, or just want separate
-      workspaces. Running <code>emu open</code> will open another emulator window with a fresh computer. You can also
-      pass in an ID of the computer you want to use.
-    </p>
+      <blockquote>
+        Don't feel like you have to remember any of this! The emulator is documented in game, so you can always
+        run <code>help emu</code> if you get stuck.
+      </blockquote>
 
-    <p>
-      Once you've finished running <code>emu close</code> will close the current emulator window. Of course, you could
-      always just press the "X" button.
-    </p>
+      <h3>{{#header "emu-cmd-open" .}}Opening more computers{{/header}}</h3>
+      <p>
+        Sometimes you may want more than one computer. Maybe you need to test a chat program, or just want separate
+        workspaces. Running <code>emu open</code> will open another emulator window with a fresh computer. You can also
+        pass in an ID of the computer you want to use.
+      </p>
 
-    <blockquote>
-      If you ever need to access a computer's filesystem, run <code>emu data</code>. This will open CCEmuX's data
-      directory in your file manager, from which you can access each computer, as well as CCEmuX's configuration files.
-    </blockquote>
+      <p>
+        Once you've finished running <code>emu close</code> will close the current emulator window. Of course, you could
+        always just press the "X" button.
+      </p>
 
-    <h3>Configuring the emulator</h3>
-    <p>
-      CCEmuX exposes many of ComputerCraft's built-in configuration options, as well as providing many of its own. While
-      these can be changed by hand, it's often easier to use the built-in editor.
-    </p>
+      <blockquote>
+        If you ever need to access a computer's filesystem, run <code>emu data</code>. This will open CCEmuX's data
+        directory in your file manager, from which you can access each computer, as well as CCEmuX's configuration files.
+      </blockquote>
 
-    <p>
-      Just enter <code>emu config</code> to open the config UI. This has a list of every config option provided by
-      CCEmuX, as well as additional groups on the left. Settings are updated straight away, though some may not have any
-      impact until restarting the emulator.
-    </p>
+      <h3>{{#header "emu-cmd-config" .}}Configuring the emulator{{/header}}</h3>
+      <p>
+        CCEmuX exposes many of ComputerCraft's built-in configuration options, as well as providing many of its own. While
+        these can be changed by hand, it's often easier to use the built-in editor.
+      </p>
 
-    <blockquote>
-      If you're a little confused about what something means, just mouse over it. Most config options provide a tooltip
-      which provides a more in-depth description of what it does.
-    </blockquote>
+      <p>
+        Just enter <code>emu config</code> to open the config UI. This has a list of every config option provided by
+        CCEmuX, as well as additional groups on the left. Settings are updated straight away, though some may not have any
+        impact until restarting the emulator.
+      </p>
+
+      <p>
+        <img src="img/help/config.png" alt="CCEmuX's config editor" title="CCEmuX's config editor" class="article-img" />
+      </p>
+
+      <blockquote>
+        If you're a little confused about what something means, just mouse over it. Most config options provide a tooltip
+        which provides a more in-depth description of what it does.
+      </blockquote>
+    </div>
+    <div class="navigable-sidebar">
+      <div class="navigable-items">
+        <h2>Contents</h2>
+        <ul>{{headers . }}</ul>
+      </div>
+    </div>
   </div>
 {{/layout}}

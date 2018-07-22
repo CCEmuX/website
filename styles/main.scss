@@ -31,7 +31,7 @@ body {
 }
 
 a { text-decoration: none; }
-a:hover, a:focus { text-decoration: underline; }
+a:hover { text-decoration: underline; }
 @include link($red, darken($red, 20%));
 
 code {
@@ -128,7 +128,7 @@ nav {
     color: $fore;
 
     @include link($fore, darken($fore, 20%));
-    a:hover, a:focus { background: darken($back, 10%); }
+    a:hover { background: darken($back, 10%); }
     a.active { background: darken($back, 15%); }
   }
 
@@ -166,22 +166,25 @@ nav {
 }
 
 /* General */
-.content, .narrow-content {
+.container {
   width: 100%;
   max-width: 1200px;
   box-sizing: border-box;
   padding: 15px;
   margin: 0px auto;
+}
 
-  &.narrow-content { max-width: 800px; }
-
+.content {
   h1 { font-size: 1.8em; margin: 15px 0px; }
   h2 { font-size: 1.6em; margin: 15px 0px; }
-  h3 { font-size: 1.4em; margin: 5px 0px;}
+  h3 { font-size: 1.4em; margin: 15px 0px;}
   h1, h2, h3, p, li, blockquote { line-height: 1.4em; }
 
   ul { margin-left: 1.5em; }
   li { list-style-type: disc; margin: 0.4em 0; }
+
+  .header-link { font-size: 0.6em; vertical-align: top; }
+  .header-link:focus { outline: none; background-color: $white; }
 
   blockquote {
     padding: 15px;
@@ -191,6 +194,47 @@ nav {
 }
 
 p, ul, blockquote { .content & + & { margin-top: 10px; } }
+
+.navigable {
+  display: flex;
+  justify-content: center;
+
+  .navigable-sidebar {
+    width: 200px;
+    max-width: 200px;
+    flex-shrink: 0;
+    order: 1;
+
+    h2 { font-size: 1.4em; margin: 15px 0px 5px 0px; }
+    h2, li { line-height: 1.4em; }
+
+    .navigable-items {
+      position: sticky;
+      top: 0px;
+    }
+  }
+
+  .content {
+    flex-grow: 1;
+    order: 2;
+    max-width: 800px;
+  }
+}
+
+@media(max-width: 800px) {
+  .navigable {
+    flex-direction: column;
+    justify-content: flex-start;
+
+    .navigable-sidebar {
+      order: 2;
+      .navigable-items { position: static; }
+    }
+
+    .content { order: 1; }
+  }
+}
+
 
 .features {
     display: flex;
@@ -238,4 +282,11 @@ p, ul, blockquote { .content & + & { margin-top: 10px; } }
       align-self: center;
     }
   }
+}
+
+.article-img {
+  display: block;
+  max-height: 60vh;
+  max-width: 90%;
+  margin: 5px auto;
 }

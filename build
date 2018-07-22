@@ -61,10 +61,10 @@ cd $SRC_DIR
 make "OUT=$OUT_DIR" "$OUT_DIR/main.css"
 
 # Rebuild our JSON data
-echo "{\
-  \"css_version\":\"$(sha1sum "$OUT_DIR/main.css" | cut -c-10)\",\
-  \"sha_short\":\"$NEW_SHA_SHORT\",\
-  \"sha_long\":\"$NEW_SHA\",\
+echo "{
+  \"css_version\":\"$(sha1sum "$OUT_DIR/main.css" | cut -c-10)\",
+  \"sha_short\":\"$NEW_SHA_SHORT\",
+  \"sha_long\":\"$NEW_SHA\",
   \"date\":\"$COMMIT_DATE\"
 }" > "$SRC_DIR/pages/data.json"
 

@@ -38,8 +38,8 @@ then
   rm -rf "$JAR_DIR"
   ./gradlew -q clean build
 
-  CC_JAR="$(find "$JAR_DIR" -type f -name '*-cc.jar')"
-  CCT_JAR="$(find "$JAR_DIR" -type f -name '*-cct.jar')"
+  CC_JAR="$(find "$JAR_DIR" -type f -name '*-cc-min.jar')"
+  CCT_JAR="$(find "$JAR_DIR" -type f -name '*-cct-min.jar')"
 
   # Deploy our new files
   SUB_DIR="$OUT_DIR/versions/$NEW_SHA_SHORT"

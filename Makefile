@@ -27,10 +27,10 @@ $(OUT)/%.html: pages/%.handlebars pages/data.json $(PARTIALS)
 $(OUT)/favicon.ico: img/icon/favicon.ico
 	cp $< $@
 
-$(OUT)/ccemux-launcher.jar: launcher/build/libs/launcher-1.0-all.jar
+$(OUT)/ccemux-launcher.jar: launcher/build/libs/launcher-1.0-all-min.jar
 	cp $< $@
 
-launcher/build/libs/launcher-1.0-all.jar:
+launcher/build/libs/launcher-1.0-all-min.jar:
 	if [ ! -d "launcher" ]; then git clone https://github.com/CCEmuX/launcher.git launcher; fi
 	cd launcher && ./gradlew build
 

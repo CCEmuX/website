@@ -13,7 +13,7 @@ all: $(OUT)
 clean:
 	rm -rf $(OUT)
 
-$(OUT): $(OUT)/main.css $(OUT)/index.html $(OUT)/getting-started.html $(OUT)/img $(OUT)/favicon.ico $(OUT)/ccemux-launcher.jar
+$(OUT): $(OUT)/main.css $(OUT)/index.html $(OUT)/getting-started.html $(OUT)/ccemux-api.html $(OUT)/tips.html $(OUT)/peripherals.html $(OUT)/img $(OUT)/favicon.ico $(OUT)/ccemux-launcher.jar
 	touch $(OUT)
 
 $(OUT)/main.css: $(STYLES)

@@ -1,0 +1,96 @@
+{{#> layout
+    title="The ccemux API | CCEmuX"
+    description="The CCEmuX API provides a way to control the emulator."
+    url="/ccemux-api.html"
+    groupUrl="/getting-started.html" }}
+  <nav>{{> nav }}</nav>
+
+  <div class="container navigable">
+    <div class="content">
+      <h1>The <code>ccemux</code> API</h1>
+      <p>
+        Along with the <code>emu</code> command, CCEmuX provides an API which allows you to interact with the emulator,
+        providing functionality you wouldn't have under normal ComputerCraft.
+      </p>
+
+      <p>
+        If you do not want access to the <code>emu</code> program or <code>ccemux</code> API, one
+        can <a href="/getting-started.html#emu-cmd-config">disable the "CCEmuX API" plugin</a>.
+      </p>
+
+      <h2>{{#header "getVersion" .}}<code>ccemux.getVersion<span class="extra">():string</span></code>{{/header}}</h2>
+      <p>
+        Returns the current emulator version.
+      </p>
+
+      <h2>{{#header "openEmu" .}}<code>ccemux.openEmu<span class="extra">([id: number]):number</span></code>{{/header}}</h2>
+      <p>
+        Open a new emulator window. If the ID is given, a computer with the specific ID will be created, otherwise the
+        next available ID will be used.
+      </p>
+      <p>
+        This function returns the ID of the new computer.
+      </p>
+
+      <h2>{{#header "closeEmu" . }}<code>ccemux.closeEmu<span class="extra">()</span></code>{{/header}}</h2>
+      <p>
+        Shutdown the computer and close the current emulator window.
+      </p>
+
+      <h2>{{#header "openDataDir" .}}<code>ccemux.openDataDir<span class="extra">():boolean</span></code>{{/header}}</h2>
+      <p>
+        Attempt to open CCEmuX's data directory in your file browser. This returns whether it could successfully be
+        opened or not.
+      </p>
+
+      <h2>{{#header "openConfig" .}}<code>ccemux.openConfig<span class="extra">():boolean</span></code>{{/header}}</h2>
+      <p>
+        Attempt to open CCEmuX's config editor. This returns whether it could successfully be opened or not. In the
+        event of a failure, an error message should also be returned.
+      </p>
+
+
+      <h2>{{#header "milliTime" . }}<code>ccemux.milliTime<span class="extra">():number</span></code>{{/header}}</h2>
+      <p>
+        Get the current time in milliseconds. This is equivalent to <code>os.epoch("utc")</code>.
+      </p>
+
+      <h2>{{#header "nanoTime" . }}<code>ccemux.nanoTime<span class="extra">():number</span></code>{{/header}}</h2>
+      <p>
+        Get the current time in nanoseconds. Unlike <code>ccemux.milliTime</code>, this is not related to any "real
+        world" time. It should only be compared with other values returned by <code>ccemux.nanoTime</code>, generally to
+        measure how long something takes.
+      </p>
+
+      <h2>{{#header "echo" . }}<code>ccemux.echo<span class="extra">(message:string)</span></code>{{/header}}</h2>
+      <p>
+        Log a message to <em>CCEmuX's</em> console. This may be useful when running CCEmuX on a headless server, where
+        you still need to monitor the output of a program.
+      </p>
+
+      <h2>{{#header "setClipboard" . }}<code>ccemux.setClipboard<span class="extra">(message:string)</span></code>{{/header}}</h2>
+      <p>
+        Set the current system clipboard, allowing a string to be pasted into other applications more easily.
+      </p>
+
+      <h2>{{#header "attach" . }}<code>ccemux.attach<span class="extra">(side:string, peripheral:string[, options:table])</span></code>{{/header}}</h2>
+      <p>
+        Attach a new peripheral on the given side, replacing whichever peripheral was there already. For more
+        information about the various peripherals available, and how to interact with
+        them <a href="/peripherals.html">see the peripheral documentation</a>.
+      </p>
+
+      <h2>{{#header "attach" . }}<code>ccemux.detach<span class="extra">(side:string)</span></code>{{/header}}</h2>
+      <p>
+        Detach whichever peripheral is on the given side.
+      </p>
+    </div>
+    <div class="navigable-sidebar">
+      <div class="navigable-items">
+        <h2>Contents</h2>
+        <ul>{{headers . }}</ul>
+        {{> docNav }}
+      </div>
+    </div>
+  </div>
+{{/layout}}

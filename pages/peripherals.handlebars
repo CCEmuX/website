@@ -1,0 +1,75 @@
+{{#> layout
+    title="Peripherals | CCEmuX"
+    description="CCEmuX provides several built-in peripherals. Learn how to set them up!"
+    url="/peripherals.html"
+    groupUrl="/getting-started.html" }}
+  <nav>{{> nav }}</nav>
+
+  <div class="container navigable">
+    <div class="content">
+      <h1>Peripherals</h1>
+      <p>
+        Along with emulating ComputerCraft's core, CCEmuX also emulates a couple of CC's peripherals. This allows you to
+        test and develop a whole slew of other programs within the emulator.
+      </p>
+      <p>
+        Peripherals are attached using
+        the <a href="http://localhost:8080/ccemux-api.html#attach"><code>ccemux.attach</code></a> method. This takes a
+        peripheral side (such as `left` or `top`), the name of a peripheral (we'll get onto that in a moment) and an
+        optional table, specifying any additional options.
+      </p>
+
+      <h2>{{#header "wireless" .}}Wireless modems{{/header}}</h2>
+      <p>
+        As mentioned above, <code>ccemux.attach</code> takes a "peripheral name". This allows us to determine what kind
+        of peripheral you want to attach. A wireless modem's peripheral name is
+        (unsurprisingly) <code>"wireless_modem"</code>.
+      </p>
+
+      <p>
+        If you run <code>ccemux.attach("left", "wireless_modem")</code> in the Lua shell, you should now have access to
+        a wireless modem. You could even add this to your startup file to make sure it's always there.
+      </p>
+
+      <p>
+        While this is all well and good, sometimes you may need to tweak the modem a little. Perhaps you need several at
+        different positions? Or maybe you want to restrict the range? This is where the options table comes in:
+      </p>
+
+<pre>ccemux.attach("left", "wireless_modem", {
+  -- The range of this modem
+  range = 64,
+
+  -- Whether this is an ender modem
+  interdimensional = false,
+
+  -- The current world's name. Sending messages between worlds requires an interdimensional modem
+  world = "main",
+
+  -- The position of this wireless modem within the world
+  posX = 0, posY = 0, posZ = 0,
+})</pre>
+
+      <h2>{{#header "drive" .}}Disk drives{{/header}}</h2>
+      <p>
+        Disk drives can be attached using the <code>"disk_drive"</code> peripheral name. By default, they don't have a
+        disk inside them: you need to pass in a disk ID:
+      </p>
+<pre>ccemux.attach("left", "disk_drive", {
+  -- The disk's ID
+  id = 0
+})</pre>
+
+      <p>
+        The <code>/disk</code> folder should now be mounted, and you will be able to write to it.
+      </p>
+    </div>
+    <div class="navigable-sidebar">
+      <div class="navigable-items">
+        <h2>Contents</h2>
+        <ul>{{headers . }}</ul>
+        {{> docNav }}
+      </div>
+    </div>
+  </div>
+{{/layout}}

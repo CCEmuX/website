@@ -34,7 +34,7 @@ a { text-decoration: none; }
 a:hover { text-decoration: underline; }
 @include link($red, darken($red, 20%));
 
-code {
+code, pre {
   // Use system fonts where possible
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
 }
@@ -176,15 +176,17 @@ nav {
 
 .content {
   h1 { font-size: 1.8em; margin: 15px 0px; }
-  h2 { font-size: 1.6em; margin: 15px 0px; }
+  h2 { font-size: 1.6em; margin: 1.2em 0 0.3em 0; }
   h3 { font-size: 1.4em; margin: 15px 0px;}
   h1, h2, h3, p, li, blockquote { line-height: 1.4em; }
 
   ul { margin-left: 1.5em; }
   li { list-style-type: disc; margin: 0.4em 0; }
 
-  .header-link { font-size: 0.6em; vertical-align: top; }
+  .header-link { vertical-align: top; }
   .header-link:focus { outline: none; background-color: $white; }
+  .header-link + span { padding: 2px; }
+  .header-link:target + span { background: $white; }
 
   blockquote {
     padding: 15px;
@@ -193,7 +195,7 @@ nav {
   }
 }
 
-p, ul, blockquote { .content & + & { margin-top: 10px; } }
+p, ul, blockquote, pre { .content & + & { margin-top: 10px; } }
 
 .navigable {
   display: flex;
@@ -207,6 +209,9 @@ p, ul, blockquote { .content & + & { margin-top: 10px; } }
 
     h2 { font-size: 1.4em; margin: 15px 0px 5px 0px; }
     h2, li { line-height: 1.4em; }
+
+    a.active { font-weight: bold; }
+    .extra { display: none; }
 
     .navigable-items {
       position: sticky;

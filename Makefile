@@ -13,7 +13,7 @@ all: $(OUT)
 clean:
 	rm -rf $(OUT)
 
-$(OUT): $(OUT)/main.css $(OUT)/index.html $(OUT)/getting-started.html $(OUT)/ccemux-api.html $(OUT)/tips.html $(OUT)/peripherals.html $(OUT)/img $(OUT)/favicon.ico $(OUT)/ccemux-launcher.jar
+$(OUT): $(OUT)/main.css $(OUT)/index.html $(OUT)/getting-started.html $(OUT)/ccemux-api.html $(OUT)/tips.html $(OUT)/peripherals.html $(OUT)/img $(OUT)/favicon.ico
 	touch $(OUT)
 
 $(OUT)/main.css: $(STYLES)
@@ -27,16 +27,17 @@ $(OUT)/%.html: pages/%.handlebars pages/data.json $(PARTIALS)
 $(OUT)/favicon.ico: img/icon/favicon.ico
 	cp $< $@
 
-$(OUT)/ccemux-launcher.jar: launcher/build/libs/launcher-1.0-all-min.jar
-	cp $< $@
-
-launcher/build/libs/launcher-1.0-all-min.jar:
-	if [ ! -d "launcher" ]; then git clone https://github.com/CCEmuX/launcher.git launcher; fi
-	cd launcher && ./gradlew build
-
 $(OUT)/img: $(IMG)
 	rm -rf $(OUT)/img
 	cp -r img $(OUT)
+
+pages/data.json: $(OUT)/main.css
+	echo "{                                                               \
+	  \"css_version\":\"$(shell sha1sum "$(OUT)/main.css" | cut -c-10)\", \
+	  \"sha_short\":\"$(SHA_SHORT)\",                                     \
+	  \"sha_long\":\"$(SHA)\",                                            \
+	  \"date\":\"$(COMMIT_DATE)\"                                         \
+	}" > "pages/data.json"
 
 serve: $(OUT)
 	# Run a HTTP server and rebuild the template & css as needed.

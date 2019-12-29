@@ -58,4 +58,4 @@ echo "Rebuilding website"
 cd $SRC_DIR
 
 # And regenerate everything else
-make "OUT=$OUT_DIR" "SHA=$NEW_SHA_SHORT" "NEW_SHA=$NEW_SHA" "COMMIT_DATE=$COMMIT_DATE" "$OUT_DIR" -B
+make "OUT=$OUT_DIR" "SHA_SHORT=$NEW_SHA_SHORT" "SHA=$NEW_SHA" "COMMIT_DATE=$COMMIT_DATE" "$OUT_DIR" -B

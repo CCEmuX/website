@@ -1,0 +1,50 @@
+{{#> layout
+    title="Command line arguments | CCEmuX"
+    description="Options which can be used when starting the emulator."
+    url="/cli.html"
+    groupUrl="/getting-started.html" }}
+  <nav>{{> nav }}</nav>
+
+  <div class="container navigable">
+    <div class="content">
+      <h1>Command line arguments</h1>
+      <p>
+        While you'll most likely start CCEmuX through some shortcut, one may also launch the emulator from the command
+        line. CCEmuX's command line interface provides several additional options to make it more useful.
+      </p>
+
+      <p>
+        You can start the emulator from the command line by running <code>java -jar ccemux-launcher.jar</code>, or using
+        a specific emulator version instead. Additional arguments may then be supplied after the <code>.jar</code>
+        file. <code>--help</code> (or <code>-h</code>) will give you a full list of options.
+      </p>
+
+      <h2>{{#header "data-dir" .}}<code>--data-dir<span class="extra">, -d=PATH</span></code>{{/header}}</h2>
+      <p>
+        The <code>--data-dir</code> argument allows you to override the directory that CCEmuX uses for storing
+        configuration files and data (such as computers). This allows you, for instance, to make a portable version of
+        CCEmuX which stores data to a USB stick instead of your hard drive.
+      </p>
+
+      <h2>{{#header "computers-dir" .}}<code>--computers-dir<span class="extra">, -C=PATH</span></code>{{/header}}</h2>
+      <p>
+        <code>--computers-dir</code> allows you to override the directory that CCEmuX loads computers from. For example,
+        you can point CCEmuX to load from the </code>computer</code> folder of a given Minecraft save. The provided path
+        must be a directory with folders numbered 0, 1, etc... for each computer.
+      </p>
+
+      <h2>{{#header "start-dir" .}}<code>--start-dir<span class="extra">, -c=PATH</span></code>{{/header}}</h2>
+      <p>
+        The <code>-c</code> flag instructs CCEmuX to create a computer mounted to a specific folder, rather than using
+        the computer directory. This may be used to start the emulator within a project's folder.
+      </p>
+    </div>
+    <div class="navigable-sidebar">
+      <div class="navigable-items">
+        <h2>Contents</h2>
+        <ul>{{headers . }}</ul>
+        {{> docNav }}
+      </div>
+    </div>
+  </div>
+{{/layout}}

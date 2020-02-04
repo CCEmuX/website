@@ -196,6 +196,7 @@ nav {
 }
 
 p, ul, blockquote, pre { .content & + & { margin-top: 10px; } }
+pre { overflow-x: auto; }
 
 .navigable {
   display: flex;

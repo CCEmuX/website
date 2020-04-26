@@ -21,9 +21,9 @@ $(OUT)/main.css: $(STYLES)
 	mkdir -p $(OUT)
 	node-sass --output-style compressed styles/main.scss > $(OUT)/main.css
 
-$(OUT)/%.html: pages/%.handlebars pages/data.json $(PARTIALS)
+$(OUT)/%.html: pages/%.handlebars pages/data.json $(PARTIALS) template/build.js
 	mkdir -p $(OUT)
-	< $< | node template/build.js > $@
+	node template/build.js < $< > $@
 
 $(OUT)/favicon.ico: img/icon/favicon.ico
 	cp $< $@

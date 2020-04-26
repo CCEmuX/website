@@ -23,7 +23,7 @@ $(OUT)/main.css: $(STYLES)
 
 $(OUT)/%.html: pages/%.handlebars pages/data.json $(PARTIALS)
 	mkdir -p $(OUT)
-	hbs --stdout --data pages/data.json --helper './template/helpers' --partial 'template/*.handlebars' $< > $@
+	< $< | node template/build.js > $@
 
 $(OUT)/favicon.ico: img/icon/favicon.ico
 	cp $< $@

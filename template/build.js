@@ -1,4 +1,15 @@
-module.exports.register = handlebars => handlebars.registerHelper({
+/**
+ * Basic script to reads a handlebars template from stdin and renders it to
+ * stdout.
+ *
+ * This registers several additional helpers, partials from template/*.handlebars,
+ * and data from pages/data.json.
+ */
+
+const fs = require("fs");
+const handlebars = require("handlebars");
+
+handlebars.registerHelper({
   link: function (linkTo, context, options) {
     const extra = linkTo === context.url || linkTo === context.groupUrl ? ` class="active"` : '';
     return `<a href="${linkTo}" ${extra}>${options.fn(this)}</a>`;
@@ -20,3 +31,16 @@ module.exports.register = handlebars => handlebars.registerHelper({
     return new handlebars.SafeString(items);
   }
 });
+
+fs
+  .readdirSync("template")
+  .filter(x => x.substr(-11) == ".handlebars")
+  .map(x => x.substr(0, x.length-11))
+  .forEach(file => {
+    handlebars.registerPartial(file, fs.readFileSync(`template/${file}.handlebars`, { encoding: "utf8"}));
+  });
+
+const contents = fs.readFileSync(0, { encoding: "utf8"});
+const data = JSON.parse(fs.readFileSync("pages/data.json", { encoding: "utf8" }));
+const result = handlebars.compile(contents)(data);
+fs.writeFileSync(1, result);

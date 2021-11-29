@@ -19,7 +19,7 @@ $(OUT): $(OUT)/main.css $(OUT)/index.html $(OUT)/getting-started.html $(OUT)/cce
 
 $(OUT)/main.css: $(STYLES)
 	mkdir -p $(OUT)
-	node-sass --output-style compressed styles/main.scss > $(OUT)/main.css
+	sass --style compressed styles/main.scss $(OUT)/main.css
 
 $(OUT)/%.html: pages/%.handlebars pages/data.json $(PARTIALS) template/build.js
 	mkdir -p $(OUT)

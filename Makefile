@@ -1,5 +1,3 @@
-export PATH := $(shell npm bin):$(PATH)
-
 OUT := dist
 
 STYLES := $(shell find styles -type f -name '*.scss')
@@ -19,7 +17,7 @@ $(OUT): $(OUT)/main.css $(OUT)/index.html $(OUT)/getting-started.html $(OUT)/cce
 
 $(OUT)/main.css: $(STYLES)
 	mkdir -p $(OUT)
-	sass --style compressed styles/main.scss $(OUT)/main.css
+	npx sass --style compressed styles/main.scss $(OUT)/main.css
 
 $(OUT)/%.html: pages/%.handlebars pages/data.json $(PARTIALS) template/build.js
 	mkdir -p $(OUT)

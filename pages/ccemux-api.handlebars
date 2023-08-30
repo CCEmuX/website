@@ -23,11 +23,18 @@
         Returns the current emulator version.
       </p>
 
-      <h2>{{#header "openEmu" .}}<code>ccemux.openEmu<span class="extra">([id: number]):number</span></code>{{/header}}</h2>
+      <h2>{{#header "openEmu" .}}<code>ccemux.openEmu<span class="extra">([id: number, [props: table]]):number</span></code>{{/header}}</h2>
       <p>
         Open a new emulator window. If the ID is given, a computer with the specific ID will be created, otherwise the
         next available ID will be used.
       </p>
+      <p>
+        A table may be passed as the second argument the following (optional) properties:
+      </p>
+      <ul>
+        <li><code>width</code>, <code>height</code>: The width/height of the new computer's terminal.</li>
+        <li><code>scale</code>: The scale used by the terminal renderer. It is recommended this is an integer.</li>
+      </ul>
       <p>
         This function returns the ID of the new computer.
       </p>
@@ -80,9 +87,14 @@
         them <a href="/peripherals.html">see the peripheral documentation</a>.
       </p>
 
-      <h2>{{#header "attach" . }}<code>ccemux.detach<span class="extra">(side:string)</span></code>{{/header}}</h2>
+      <h2>{{#header "detach" . }}<code>ccemux.detach<span class="extra">(side:string)</span></code>{{/header}}</h2>
       <p>
         Detach whichever peripheral is on the given side.
+      </p>
+
+      <h2>{{#header "screenshot" . }}<code>ccemux.screenshot<span class="extra">(): string</span></code>{{/header}}</h2>
+      <p>
+        Take a screenshot of the current window. This returns a filename in the emulators' screenshots folder.
       </p>
     </div>
     <div class="navigable-sidebar">
